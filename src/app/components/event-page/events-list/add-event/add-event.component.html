@@ -1,0 +1,44 @@
+<!-- Add Event Modal-->
+<div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Add a new event.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form ngNativeValidate>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="addEventName">Name</label>
+              <input type="text" class="form-control" name="addEventName" id="addEventName" [(ngModel)]="eventName" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="addEventDate">Date</label>
+              <input type="date" class="form-control" name="addEventDate" id="addEventDate" min="{{today | date:'yyyy-MM-dd'}}" [(ngModel)]="eventDate" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="addEventPromotion">Promotion</label>
+              <select class="form-control" name="addEventPromotion" id="addEventPromotion" [(ngModel)]="eventPromotion" required>
+                <option *ngFor="let promotion of promotions" value="{{promotion.abr}}">{{promotion.abr}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <br>
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Event has been added.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{this.errorMessage}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

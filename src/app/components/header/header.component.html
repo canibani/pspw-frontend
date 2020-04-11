@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">PSPW-App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/events">Predictions</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="user">
+          <a class="nav-link" routerLink="/account">Welcome {{user.username}}!</a>
+        </li>
+        <li class="nav-item" *ngIf="user">
+          <a class="nav-link" routerLink="" (click)="logout()">Log out</a>
+        </li>
+    </ul>
+  </div>
+</nav>

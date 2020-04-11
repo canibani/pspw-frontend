@@ -1,0 +1,108 @@
+<div style="border:1px solid rgba(0,0,0,.125); border-radius: .25rem; padding: .75rem 1.25rem;" *ngIf="event">
+  <h5 class="card-title" style="text-align: center">{{event.name}} - {{event.date}}</h5>
+  <div class="list-group list-group-horizontal" style="margin: auto; text-align: center;">
+    <button class="list-group-item list-group-item-action-sm" data-toggle="modal" data-target="#addMatchModal" (click)="openAddMatchModal()" *ngIf="false">Add Match</button>
+  </div>
+  <br>
+  <div class="input-group mb-3" *ngFor="let match of matches; let i = index;">
+    <div class="input-group-prepend list-group-horizontal" style="width: 100%">
+      <span class="input-group-text" style="width: 100%; word-wrap: break-word;">{{formatMatchText(match)}}</span>
+      <select class="list-group-item list-group-item-action" style="width: 20%;" name="team" [(ngModel)]="predictions[i]">
+        <!-- <option [selected]="true" [value]="0">Choose wisely...</option>-->
+        <option *ngFor="let team of match.teams" value="{{team.teamId}}">{{formatTeam(team)}}</option>
+      </select>
+      <div class="input-group-prepend" id="button-addon3">
+        <button *ngIf="false" class="list-group-item list-group-item-action-sm" data-toggle="modal" data-target="#editMatchModal"   (click)="openEditAndDeleteMatchModal(match)"><i class="fas fa-edit"></i></button>
+        <button *ngIf="false" class="list-group-item list-group-item-action-sm" data-toggle="modal" data-target="#deleteMatchModal" (click)="openEditAndDeleteMatchModal(match)"><i class="fas fa-trash-alt"></i></button>
+      </div>
+    </div>
+  </div>
+  <button (click)="makePrediction()" class="btn btn-primary">Submit</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--&lt;!&ndash; Add Match Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="addMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="addMatchModalLabel">Add a new match</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body" style="width: 100%;">-->
+
+<!--        <div *ngFor="let x of newMatch; let last = last" style="width: 100%; display: flex; flex-wrap: wrap;">-->
+<!--          <select>-->
+<!--            <option></option>-->
+<!--          </select>-->
+<!--          <p *ngIf="!last">vs</p>-->
+<!--        </div>-->
+
+
+
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>-->
+<!--        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editEvent()">Save changes</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Remove Match Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="removeMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="removeMatchModalLabel">Edit event {{selectedEventName}}</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <input type="text" placeholder="Enter new name..." [(ngModel)]="newName">-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>-->
+<!--        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editEvent()">Save changes</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Edit Match Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="editModalLabel">Edit event {{selectedEventName}}</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <input type="text" placeholder="Enter new name..." [(ngModel)]="newName">-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>-->
+<!--        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editEvent()">Save changes</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

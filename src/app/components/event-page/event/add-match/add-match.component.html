@@ -1,0 +1,49 @@
+<!-- Add Match Modal-->
+<div class="modal fade" id="addMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="event">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Add a new match to event {{event.name}}.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="addMatchType">Match Type</label>
+            <select class="form-control" name="addEventPromotion" id="addMatchType" [ngModel]="matchType" required>
+              <option *ngFor="let matchType of matchTypes" value="{{matchType.matchType}}">{{matchType.matchType}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="addMatchPrize">Prize</label>
+            <select class="form-control" name="addEventPromotion" id="addMatchPrize" [ngModel]="prize" required>
+              <option *ngFor="let prize of prizes" value="{{prize.prize}}">{{prize.prize}}</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3" *ngFor="let wrestler of wrestlers">
+            <label for="addMatchPrize">Prize</label>
+            <select class="form-control" name="addEventPromotion" id="addMatchPrize" [ngModel]="prize" required>
+              <option *ngFor="let prize of prizes" value="{{prize.prize}}">{{prize.prize}}</option>
+            </select>
+          </div>
+        </div>
+
+        <br>
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Match has been added.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          {{this.errorMessage}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
